@@ -1,0 +1,16 @@
+name: Quick APK
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build Web to APK
+        uses: tttstudios/html-to-apk-action@v1
+        with:
+          web-dir: '.' # Points to where your index.html is
+      - name: Upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-app
+          path: app-release-unsigned.apk
